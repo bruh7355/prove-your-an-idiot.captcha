@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Totally Serious Captcha</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+}
+
+button {
+    margin: 8px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- First Captcha -->
+    <div id="captcha1">
+        <h3>Captcha Verification</h3>
+        <p><strong>I am an idiot</strong></p>
+        <button onclick="nextCaptcha()">I'm not a robot</button>
+    </div>
+
+    <!-- Second Captcha -->
+    <div id="captcha2" class="hidden">
+        <h3>What is 1 + 1?</h3>
+        <button onclick="checkAnswer('1')">1</button>
+        <button onclick="checkAnswer('2')">2</button>
+        <button onclick="checkAnswer('3')">3</button>
+        <button onclick="checkAnswer('11')">11</button>
+        <button onclick="checkAnswer('22')">22</button>
+        <p id="result"></p>
+    </div>
+
+</div>
+
+<script>
+function nextCaptcha() {
+    document.getElementById('captcha1').classList.add('hidden');
+    document.getElementById('captcha2').classList.remove('hidden');
+}
+
+function checkAnswer(answer) {
+    const result = document.getElementById('result');
+    
+    if(answer === '11') {
+        result.textContent = 'Correct! You passed the captcha.';
+        result.className = 'success';
+    } else {
+        result.textContent = 'Wrong! Try again.';
+        result.className = 'error';
+    }
+}
+</script>
+
+</body>
+</html>
